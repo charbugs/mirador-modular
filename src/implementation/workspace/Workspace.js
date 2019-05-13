@@ -1,25 +1,23 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Workspace } from '../../mirador/workspace/components/Workspace'
-import Window from './Window'
 import ControlPanel from './ControlPanel'
+import Windows from '../elastic/Windows'
+import Loader from '../loader/Loader'
 
-function WorkspaceImpl({ windows, openWindow }) {
 
-  function renderWindows() {
-    return Object.keys(windows).map(id => <Window key={id} windowId={id} />)
-  }
-
+function WorkspaceImpl({ loaderVisible }) {
+  const content = loaderVisible ? <Loader /> : <Windows />
   return (
-    <Workspace>
-      <ControlPanel />
-      { renderWindows() }
-    </Workspace>
+    <Workspace
+      control={<ControlPanel/>}
+      content={content}
+    />
   )
 }
 
 const mapStateToProps = state => ({
-  windows: state.windows
+  loaderVisible: state.workspace.loaderVisible
 })
 
 export default connect(mapStateToProps, null)(WorkspaceImpl)

@@ -1,21 +1,13 @@
 import React from 'react'
-import { makeStyles } from '@material-ui/styles'
 import IconButton from '@material-ui/core/IconButton'
-import OpenWindowIcon from '@material-ui/icons/ExposurePlus1Outlined'
+import ShowLoaderIcon from '@material-ui/icons/LibraryAddOutlined'
 
-const useStyles = makeStyles({
-  root: {
-    border: '1px solid #ddd',
-  }
-})
 
-export function ControlPanel({ children, onOpenWindowClick }) {
-  const classes = useStyles()
-
+export function ControlPanel({ children, onLoaderClick }) {
   return (
-    <div className={classes.root}>
-      <IconButton onClick={onOpenWindowClick}>
-        <OpenWindowIcon />
+    <div>
+      <IconButton onClick={onLoaderClick}>
+        <ShowLoaderIcon />
       </IconButton>
     </div>
   )

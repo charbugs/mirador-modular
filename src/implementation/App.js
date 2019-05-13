@@ -3,7 +3,7 @@ import Workspace from './workspace/Workspace'
 
 function App(props) {
   return (
-    <Workspace/>
+    <Workspace />
   )
 }
 
