@@ -77,24 +77,60 @@ export function moveItem(id, position) {
 /**
 * @param {String} id
 */
-export function showItem(id) {
+export function showItemById(id) {
   return updateLayoutItem(id, { visible: true })
 }
 
 /**
-* @param {String} id
+ @param {String} component
 */
-export function hideItem(id) {
-  return updateLayoutItem(id, { visible: false })
+export function showItemsByName(component) {
+  return function (dispatch, getState) {
+    const state = getState().workspaceLayout
+    Object.values(state)
+      .filter(item => item.component === component)
+      .forEach(item => dispatch(showItemById(item.id)))
+  }
 }
 
 /**
 * @param {String} id
 */
-export function toggleItem(id) {
+export function hideItemById(id) {
+  return updateLayoutItem(id, { visible: false })
+}
+
+/**
+ @param {String} component
+*/
+export function hideItemsByName(component) {
+  return function (dispatch, getState) {
+    const state = getState().workspaceLayout
+    Object.values(state)
+      .filter(item => item.component === component)
+      .forEach(item => dispatch(hideItemById(item.id)))
+  }
+}
+
+/**
+* @param {String} id
+*/
+export function toggleItemById(id) {
   return function (dispatch, getState) {
     const { visible } = getState().workspaceLayout[id]
-    const action = visible ? hideItem : showItem
+    const action = visible ? hideItemById : showItemById
     return dispatch(action(id))
+  }
+}
+
+/**
+ @param {String} component
+*/
+export function toggleItemsByName(component) {
+  return function (dispatch, getState) {
+    const state = getState().workspaceLayout
+    Object.values(state)
+      .filter(item => item.component === component)
+      .forEach(item => dispatch(toggleItemById(item.id)))
   }
 }

@@ -1,18 +1,20 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { Workspace } from '../../m3/layout/workspace/components/Workspace'
 import { addItem } from '../../m3/layout/workspace/state/actions'
 import { getItemsByPosition } from '../../m3/layout/workspace/state/selectors'
+import { Workspace } from '../../m3/layout/workspace/components/Workspace'
+import ControlPanel from './ControlPanel'
+import Loader from './Loader'
 
 
-const createControlPanel = id => <div key={id}>control panel</div>
+const createControlPanel = id => <ControlPanel key={id} />
+const createLoader = id => <Loader key={id} />
 const createWindows = id => <div key={id}>windows</div>
-const createElse = id => <div key={id}>else</div>
 
 const factories = {
   'ControlPanel': createControlPanel,
+  'Loader': createLoader,
   'Windows': createWindows,
-  'Else': createElse,
 }
 
 function createComponents(items = []) {
@@ -22,6 +24,7 @@ function createComponents(items = []) {
 function initLayout(dispatch) {
   dispatch(addItem('control', 'ControlPanel'))
   dispatch(addItem('content', 'Windows'))
+  dispatch(addItem('content', 'Loader', false))
 }
 
 function WorkspaceImpl(props) {

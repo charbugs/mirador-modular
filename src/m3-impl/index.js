@@ -1,7 +1,7 @@
 import React from 'react'
 import { Provider } from 'react-redux';
 import { store } from './state/store'
-import Workspace from './workspace/Workspace'
+import Workspace from './controllers/Workspace'
 
 
 const logState = () => console.log(store.getState())
