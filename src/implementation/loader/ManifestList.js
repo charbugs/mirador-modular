@@ -1,23 +1,19 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { ManifestList } from '../../mirador/loader/components/ManifestList'
-import { openWindow } from '../../mirador/elastic/state/actions'
-import { toggleLoader } from '../../mirador/workspace/state/actions'
-import { newContent } from '../../mirador/content/state/actions'
+import { ManifestList } from '../../mirador/components/loader/ManifestList'
+import { createManifestWindow } from '../actions'
 
-function ManifestListImpl({ manifests, openWindow, toggleLoader, newContent }) {
+function ManifestListImpl({ manifests, createManifestWindow }) {
 
   function manifestsToListItems() {
     return Object.values(manifests).map(manifest => ({
-      id: manifest.json['@id'],
+      id: manifest.id,
       label: manifest.json.label,
     }))
   }
 
-  function handleItemClick(id) {
-    const contentId = newContent('standard').id
-    openWindow(contentId);
-    toggleLoader();
+  function handleItemClick(manifestId) {
+    createManifestWindow(manifestId)
   }
 
   return <ManifestList
@@ -26,12 +22,8 @@ function ManifestListImpl({ manifests, openWindow, toggleLoader, newContent }) {
   />
 }
 
-const mapStateToProps = state => ({
-  manifests: state.manifests
-})
+const mapStateToProps = state => ({ manifests: state.manifests })
 
-const mapDispatchToProps = {
-  openWindow, toggleLoader, newContent
-}
+const mapDispatchToProps = { createManifestWindow }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ManifestListImpl)

@@ -1,16 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { ControlPanel } from '../../mirador/workspace/components/ControlPanel'
-import { toggleLoader } from '../../mirador/workspace/state/actions'
+import { ControlPanel } from '../../mirador/components/workspace/ControlPanel'
 
-function ControlPaneImpl({ toggleLoader }) {
-  return (
-    <ControlPanel onLoaderClick={toggleLoader} />
-  )
+function ControlPaneImpl(props) {
+  return <ControlPanel />
 }
 
-const mapDispatchToProps = {
-  toggleLoader
-}
 
-export default connect(null, mapDispatchToProps)(ControlPaneImpl)
+export default ControlPaneImpl

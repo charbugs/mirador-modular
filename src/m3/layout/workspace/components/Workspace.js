@@ -1,7 +1,7 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/styles'
-import { useFlexStyles } from '../../styles/flex'
-import { useBorderStyles } from '../../styles/border'
+import { useFlexStyles } from '../../../styles/flex'
+import { useBorderStyles } from '../../../styles/border'
 import cn from 'classnames'
 
 const useStyles = makeStyles({

@@ -5,7 +5,7 @@ import { WindowContext } from '../contexts/WindowContext'
 
 const defaultStyle = {
   border: "solid 1px #ddd",
-  display: 'flex'
+  display: 'flex',
 }
 
 export function Window({ position, windowId, dragHandleClassName, children }) {

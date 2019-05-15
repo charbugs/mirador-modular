@@ -1,13 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Window } from '../../mirador/elastic/components/Window'
-import { StandardLayout } from '../../mirador/content/components/StandardLayout'
+import StandardLayout from '../layout/StandardLayout'
 
 
-function Windows({ windows, contents }) {
+function Windows({ windows, layouts }) {
 
-  function renderLayout(contentId) {
-    const type = contents[contentId].type
+  function renderLayout(layoutId) {
+    const type = layouts[layoutId].type
     if (type === 'standard')
       return <StandardLayout />
   }
@@ -19,7 +19,7 @@ function Windows({ windows, contents }) {
         windowId={win.id}
         position={{ x: win.x, y: win.y, w: win.w, h: win.h }}
       >
-        { renderLayout(win.contentId) }
+        { renderLayout(win.layoutId) }
       </Window>
 
     )
@@ -30,7 +30,7 @@ function Windows({ windows, contents }) {
 
 const mapStateToProps = state => ({
   windows: state.windows,
-  contents: state.contents,
+  layouts: state.layouts,
 })
 
 export default connect(mapStateToProps, null)(Windows)
