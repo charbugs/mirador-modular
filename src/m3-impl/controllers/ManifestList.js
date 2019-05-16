@@ -1,12 +1,14 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { toggleItemsByName } from '../../m3/layout/workspace/state/actions'
-import { ManifestList } from '../../m3/panels/ManifestList'
+import { LayoutContext } from '../../m3/grid-layout/state/contexts'
+import { toggleItemsByName } from '../../m3/grid-layout/state/actions'
+import { ManifestList } from '../../m3/loader/ManifestList'
 
 
 function ManifestListCtrl(props) {
   const dispatch = useDispatch()
   const manifests = useSelector(state => state.manifests)
+  const { layoutId, itemId } = useContext(LayoutContext)
 
   function manifestsToListItems() {
     return Object.values(manifests).map(manifest => ({
@@ -16,8 +18,8 @@ function ManifestListCtrl(props) {
   }
 
   function handleItemClick(manifestId) {
-    dispatch(toggleItemsByName('Loader'))
-    dispatch(toggleItemsByName('Windows'))
+    dispatch(toggleItemsByName(layoutId, 'Loader'))
+    dispatch(toggleItemsByName(layoutId, 'Windows'))
   }
 
   return <ManifestList

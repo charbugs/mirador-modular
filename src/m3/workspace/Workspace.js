@@ -1,7 +1,7 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/styles'
-import { useFlexStyles } from '../../../styles/flex'
-import { useBorderStyles } from '../../../styles/border'
+import { useFlexStyles } from '../styles/flex'
+import { useBorderStyles } from '../styles/border'
 import cn from 'classnames'
 
 const useStyles = makeStyles({
@@ -23,7 +23,7 @@ export function Workspace({ control, content }) {
       <div className={cn(cls.brdFull)}>
         { control }
       </div>
-      <div className={cn(cls.grow1, cls.brdFull)}>
+      <div className={cn(cls.row, cls.grow1, cls.brdFull)}>
         { content }
       </div>
 

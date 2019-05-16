@@ -1,6 +1,6 @@
 
-export function getItemsByPosition(state) {
-  return Object.values(state.workspaceLayout)
+export function getItemsByPosition(layout) {
+  return Object.values(layout)
     .reduce((acc, item) => {
       if (!item.visible) {
         return acc

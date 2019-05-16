@@ -1,16 +1,17 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useDispatch } from 'react-redux'
-import { toggleItemsByName } from '../../m3/layout/workspace/state/actions'
-import { ControlPanel } from '../../m3/panels/ControlPanel'
+import { LayoutContext } from '../../m3/grid-layout/state/contexts'
+import { toggleItemsByName } from '../../m3/grid-layout/state/actions'
+import { ControlPanel } from '../../m3/workspace/ControlPanel'
 
-function ControlPanelImpl(props) {
+export default function ControlPanelCtrl(props) {
   const dispatch = useDispatch()
+  const { layoutId, itemId } = useContext(LayoutContext)
+
   function handleLoaderClick() {
-    dispatch(toggleItemsByName('Windows'))
-    dispatch(toggleItemsByName('Loader'))
+    dispatch(toggleItemsByName(layoutId, 'Windows'))
+    dispatch(toggleItemsByName(layoutId, 'Loader'))
   }
 
   return <ControlPanel onLoaderClick={handleLoaderClick} />
 }
-
-export default ControlPanelImpl

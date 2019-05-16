@@ -1,41 +1,37 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { addItem } from '../../m3/layout/workspace/state/actions'
-import { getItemsByPosition } from '../../m3/layout/workspace/state/selectors'
-import { Workspace } from '../../m3/layout/workspace/components/Workspace'
+import { LayoutContext } from '../../m3/grid-layout/state/contexts'
+import { getItemsByPosition } from '../../m3/grid-layout/state/selectors'
+import { Workspace } from '../../m3/workspace/Workspace'
 import ControlPanel from './ControlPanel'
 import Loader from './Loader'
+import Elastic from './Elastic'
 
 
-const createControlPanel = id => <ControlPanel key={id} />
-const createLoader = id => <Loader key={id} />
-const createWindows = id => <div key={id}>windows</div>
+const createFactory = Component => (layoutId, itemId) =>
+  <LayoutContext.Provider value={{ layoutId, itemId }}>
+    <Component key={itemId} />
+  </LayoutContext.Provider>
 
 const factories = {
-  'ControlPanel': createControlPanel,
-  'Loader': createLoader,
-  'Windows': createWindows,
+  'ControlPanel': createFactory(ControlPanel),
+  'Loader': createFactory(Loader),
+  'Windows': createFactory(() => <div>Windows</div>)
 }
 
-function createComponents(items = []) {
-  return items.map(item => factories[item.component](item.id))
-}
 
-function initLayout(dispatch) {
-  dispatch(addItem('control', 'ControlPanel'))
-  dispatch(addItem('content', 'Windows'))
-  dispatch(addItem('content', 'Loader', false))
-}
+export default function WorkspaceCtrl({ layoutId }) {
+  const { control, content } = useSelector(state =>
+    getItemsByPosition(state.gridLayouts[layoutId])
+  )
 
-function WorkspaceImpl(props) {
-  const dispatch = useDispatch()
-  const { control, content } = useSelector(getItemsByPosition)
-  useEffect(() => initLayout(dispatch), [])
+  function createComponents(items = []) {
+    return items.map(item =>
+      factories[item.component](layoutId, item.id))
+  }
 
   return <Workspace
     control={createComponents(control)}
-    content={createComponents(content)}
+    content={<Elastic />}
   />
 }
-
-export default WorkspaceImpl

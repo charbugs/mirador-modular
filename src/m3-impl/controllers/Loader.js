@@ -1,5 +1,5 @@
 import React from 'react'
-import { Loader } from '../../m3/panels/Loader'
+import { Loader } from '../../m3/loader/Loader'
 import ManifestInput from './ManifestInput'
 import ManifestList from './ManifestList'
 

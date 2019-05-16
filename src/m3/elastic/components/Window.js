@@ -1,14 +1,13 @@
 import React, { useContext } from 'react'
 import PropTypes from 'prop-types'
 import { Rnd } from 'react-rnd'
-import { WindowContext } from '../contexts/WindowContext'
 
 const defaultStyle = {
   border: "solid 1px #ddd",
-  display: 'flex',
+  //display: 'absolute',
 }
 
-export function Window({ position, windowId, dragHandleClassName, children }) {
+export function Window({ position, dragHandleClassName, children }) {
   const defaultSize = {
     x: position.x,
     y: position.y,
@@ -22,9 +21,7 @@ export function Window({ position, windowId, dragHandleClassName, children }) {
       dragHandleClassName={dragHandleClassName}
       bounds="parent"
     >
-      <WindowContext.Provider value={{ windowId }}>
-        { children }
-      </WindowContext.Provider>
+      { children }
     </Rnd>
   )
 }

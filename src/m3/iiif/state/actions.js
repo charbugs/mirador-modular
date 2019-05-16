@@ -1,10 +1,11 @@
 import uuid from 'uuid/v4'
 import fetch from 'node-fetch'
+import { labeled } from './label'
 
 export function createManifest(payload) {
   const id = uuid()
   return {
-    type: 'CREATE_MANIFEST',
+    type: labeled('CREATE_MANIFEST'),
     id,
     payload: {
       id,
@@ -14,11 +15,11 @@ export function createManifest(payload) {
 }
 
 export function updateManifest(id, payload) {
-  return { type: 'UPDATE_MANIFEST', id, payload }
+  return { type: labeled('UPDATE_MANIFEST'), id, payload }
 }
 
 export function deleteManifest(id) {
-  return { type: 'DELETE_MANIFEST', id }
+  return { type: labeled('DELETE_MANIFEST'), id }
 }
 
 export function fetchManifest(manifestId) {

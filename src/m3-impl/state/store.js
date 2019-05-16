@@ -2,14 +2,15 @@ import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunkMiddleware from 'redux-thunk';
 
-import * as iiifReducers from '../../m3/iiif/basic/state/reducers'
-import * as workspaceReducers from '../../m3/layout/workspace/state/reducers'
-
+import * as iiifReducers from '../../m3/iiif/state/reducers'
+import * as gridReducers from '../../m3/grid-layout/state/reducers'
+import * as freeReducers from '../../m3/free-layout/state/reducers'
 
 export const store = createStore(
   combineReducers({
     ...iiifReducers,
-    ...workspaceReducers,
+    ...gridReducers,
+    ...freeReducers,
   }),
   composeWithDevTools(applyMiddleware(thunkMiddleware))
 )
