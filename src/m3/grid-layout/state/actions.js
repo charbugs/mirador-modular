@@ -84,7 +84,7 @@ export function clearPosition(layoutId, position) {
     // TODO: it would be nice if the module could get the correct state slice
     // directly, rather then to quess under what name it is retrievable on the
     // global state
-    const layout = getState().layouts[layoutId]
+    const layout = getState().gridLayouts[layoutId]
     Object.keys(layout)
       .filter(itemId => layout[itemId].position === position)
       .forEach(itemId => dispatch(deleteLayoutItem(layoutId, itemId)))
@@ -114,7 +114,7 @@ export function showItemById(layoutId, itemId) {
 */
 export function showItemsByName(layoutId, name) {
   return function (dispatch, getState) {
-    const layout = getState().layouts[layoutId]
+    const layout = getState().gridLayouts[layoutId]
     Object.values(layout)
       .filter(item => item.component === name)
       .forEach(item => dispatch(showItemById(layoutId, item.id)))
@@ -135,7 +135,7 @@ export function hideItemById(layoutId, itemId) {
 */
 export function hideItemsByName(layoutId, name) {
   return function (dispatch, getState) {
-    const layout = getState().layouts[layoutId]
+    const layout = getState().gridLayouts[layoutId]
     Object.values(layout)
       .filter(item => item.component === name)
       .forEach(item => dispatch(hideItemById(layoutId, item.id)))
@@ -148,7 +148,7 @@ export function hideItemsByName(layoutId, name) {
 */
 export function toggleItemById(layoutId, itemId) {
   return function (dispatch, getState) {
-    const { visible } = getState().layouts[layoutId][itemId]
+    const { visible } = getState().gridLayouts[layoutId][itemId]
     const action = visible ? hideItemById : showItemById
     return dispatch(action(layoutId, itemId))
   }
@@ -160,7 +160,7 @@ export function toggleItemById(layoutId, itemId) {
 */
 export function toggleItemsByName(layoutId, name) {
   return function (dispatch, getState) {
-    const layout = getState().layouts[layoutId]
+    const layout = getState().gridLayouts[layoutId]
     Object.values(layout)
       .filter(item => item.component === name)
       .forEach(item => dispatch(toggleItemById(layoutId, item.id)))

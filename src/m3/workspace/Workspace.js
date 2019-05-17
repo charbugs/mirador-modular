@@ -23,7 +23,7 @@ export function Workspace({ control, content }) {
       <div className={cn(cls.brdFull)}>
         { control }
       </div>
-      <div className={cn(cls.row, cls.grow1, cls.brdFull)}>
+      <div className={cn(cls.grow1, cls.brdFull)}>
         { content }
       </div>
 

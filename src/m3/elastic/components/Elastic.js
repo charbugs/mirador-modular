@@ -1,12 +1,18 @@
 import React from 'react'
-import { useFlexStyles } from '../../styles/flex'
+import { makeStyles } from '@material-ui/styles'
 import cn from 'classnames'
 
-export function Elastic({ children }) {
-  const cls = useFlexStyles()
+const useStyles = makeStyles({
+  root: {
+    width: '100%',
+    height: '100%',
+  }
+})
 
+export function Elastic({ children }) {
+  const cls = useStyles()
   return (
-    <div className={cn(cls.grow1)}>
+    <div className={cn(cls.root)}>
       { children }
     </div>
   )

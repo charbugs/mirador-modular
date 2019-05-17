@@ -9,14 +9,14 @@ import Elastic from './Elastic'
 
 
 const createFactory = Component => (layoutId, itemId) =>
-  <LayoutContext.Provider value={{ layoutId, itemId }}>
-    <Component key={itemId} />
+  <LayoutContext.Provider value={{ layoutId, itemId }} key={itemId}>
+    <Component />
   </LayoutContext.Provider>
 
 const factories = {
   'ControlPanel': createFactory(ControlPanel),
   'Loader': createFactory(Loader),
-  'Windows': createFactory(() => <div>Windows</div>)
+  'Elastic': createFactory(Elastic)
 }
 
 
@@ -32,6 +32,6 @@ export default function WorkspaceCtrl({ layoutId }) {
 
   return <Workspace
     control={createComponents(control)}
-    content={<Elastic />}
+    content={createComponents(content)}
   />
 }

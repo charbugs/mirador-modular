@@ -63,7 +63,7 @@ export function deleteLayoutItem(layoutId, itemId) {
 * @param {Object} [position] // { x ,y, w, h}
 * @param {Boolean} [visible]
 */
-export function addItem(layoutId, component, position, visible = true) {
+export function addItem(layoutId, component, position = { x: 0, y: 0, w: 300, h: 300 }, visible = true) {
   return createLayoutItem(layoutId, { component, position, visible })
 }
 

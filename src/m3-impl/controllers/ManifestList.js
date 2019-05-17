@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { LayoutContext } from '../../m3/grid-layout/state/contexts'
 import { toggleItemsByName } from '../../m3/grid-layout/state/actions'
+import { addItem } from '../../m3/free-layout/state/actions'
 import { ManifestList } from '../../m3/loader/ManifestList'
 
 
@@ -18,8 +19,9 @@ function ManifestListCtrl(props) {
   }
 
   function handleItemClick(manifestId) {
+    dispatch(addItem('elasticLayout', 'MyContent'))
     dispatch(toggleItemsByName(layoutId, 'Loader'))
-    dispatch(toggleItemsByName(layoutId, 'Windows'))
+    dispatch(toggleItemsByName(layoutId, 'Elastic'))
   }
 
   return <ManifestList

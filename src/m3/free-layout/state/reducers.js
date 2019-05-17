@@ -3,7 +3,7 @@ import unset from 'lodash/fp/unset'
 import update from 'lodash/fp/update'
 import { labeled } from './label'
 
-export function gridLayouts(state = {}, action) {
+export function freeLayouts(state = {}, action) {
   const { type, payload, layoutId, itemId } = action
   switch (action.type) {
 

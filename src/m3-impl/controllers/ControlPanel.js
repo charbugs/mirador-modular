@@ -9,7 +9,7 @@ export default function ControlPanelCtrl(props) {
   const { layoutId, itemId } = useContext(LayoutContext)
 
   function handleLoaderClick() {
-    dispatch(toggleItemsByName(layoutId, 'Windows'))
+    dispatch(toggleItemsByName(layoutId, 'Elastic'))
     dispatch(toggleItemsByName(layoutId, 'Loader'))
   }
 
