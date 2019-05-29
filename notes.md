@@ -44,3 +44,15 @@ We think this approach has serveral benefits for development and community manag
 ## Cons
 
 * This is a major refactoring that needs changes to a lot of files and the project structure
+
+## More Details
+
+A content module is a set of components for showing and/or interacting with specific resources from a manifest.
+
+For example, the current Mirador features for viewing images and related data could be packaged in an module. The module defines components for the main view of the window  and for the companion windows:
+
+[image]
+
+There might be another module that handles manifests that deal with prose. It shows the text of a book page by page, an author biography and some linguistic statistics of the text:
+
+[image]
