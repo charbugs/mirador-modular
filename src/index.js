@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Implementation from './m3-impl'
+import App from './m4-impl'
 
 //import { Workspace } from './mirador/workspace/components/Workspace'
 //import { ControlPanel } from './mirador/workspace/components/ControlPanel'
@@ -8,6 +8,6 @@ import Implementation from './m3-impl'
 
 
 ReactDOM.render(
-  <Implementation />,
+  <App />,
   document.getElementById('root'),
 );
