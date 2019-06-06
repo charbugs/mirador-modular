@@ -4,7 +4,7 @@ import { Rnd } from 'react-rnd'
 
 const defaultStyle = {
   border: "solid 1px #ddd",
-  //display: 'absolute',
+  //display: 'flex',
 }
 
 export function Window({ position, dragHandleClassName, children }) {

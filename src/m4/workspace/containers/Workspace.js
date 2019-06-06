@@ -1,8 +1,7 @@
 import React from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { useActions } from '../../providers/actions'
-import { useComponents } from '../../providers/components'
-import { useSelectors } from '../../providers/selectors'
+import { useDispatch } from 'react-redux'
+
+import { useActions, useSelectors, useComponents } from '../../providers'
 
 import { WorkspaceLayout } from '../components/WorkspaceLayout'
 import { ControlPanel } from '../components/ControlPanel'

@@ -1,23 +1,27 @@
 import React from 'react'
 
-import { useSelectors } from '../../providers/selectors'
+import { WindowIdProvider, useSelectors, useComponents } from '../../providers'
 
 import { ElasticLayout } from '../components/ElasticLayout'
 import { ElasticWindow } from '../components/ElasticWindow'
 
 export function WindowManager(props) {
-  const { getWindowMode, getWindows, getElasticWindows } =  useSelectors()
+  const { getWindowMode, getElasticWindows } =  useSelectors()
+  const { WindowLayout } = useComponents()
 
   function renderElastic() {
-    const windows = getElasticWindows()
     return (
       <ElasticLayout>
         {
-          Object.values(windows).map(win => (
-            <ElasticWindow position={win.position}>
-              <div>a window</div>
-            </ElasticWindow>
-          ))
+          Object.values(getElasticWindows()).map(window => {
+            return (
+              <ElasticWindow position={window.position} key={window.windowId}>
+                <WindowIdProvider windowId={window.windowId}>
+                  <WindowLayout />
+                </WindowIdProvider>
+              </ElasticWindow>
+            )
+          })
         }
       </ElasticLayout>
     )

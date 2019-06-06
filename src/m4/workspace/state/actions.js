@@ -1,4 +1,4 @@
-import { labeled } from '../settings'
+import { labeled } from './settings'
 
 export function toggleLoader() {
   return { type: labeled('TOGGLE_LOADER')}

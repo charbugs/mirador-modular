@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { useDispatch } from 'react-redux'
+import { useDispatch, batch } from 'react-redux'
+import uuid from 'uuid/v4'
 
-import { useSelectors } from '../../providers/selectors'
-import { useActions } from '../../providers/actions'
+import { useSelectors, useActions } from '../../providers'
 
 import { LoaderLayout } from '../components/LoaderLayout'
 import { ManifestInput } from '../components/ManifestInput'
@@ -12,7 +12,7 @@ import { ManifestList } from '../components/ManifestList'
 
 export function Loader({ manifestInfos, onManifestClick, onLoadClick  }) {
   const dispatch = useDispatch()
-  const { fetchManifest, openWindow } = useActions()
+  const { fetchManifest, createWindow, toggleLoader } = useActions()
   const { getManifestLabels } = useSelectors();
 
   function handleLoadClick(url) {
@@ -20,7 +20,10 @@ export function Loader({ manifestInfos, onManifestClick, onLoadClick  }) {
   }
 
   function handleManifestClick(manifestId) {
-    dispatch(openWindow(manifestId))
+    batch(() => {
+      dispatch(createWindow(uuid(), manifestId))
+      dispatch(toggleLoader())
+    })
   }
 
   function createManifestInfos() {

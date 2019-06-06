@@ -1,8 +1,9 @@
 import update from 'lodash/fp/update'
 import unset from 'lodash/fp/unset'
-import { labeled } from '../settings'
+import { combineReducers } from 'redux'
+import { labeled } from './settings'
 
-export function manifestReducer(state = {}, action) {
+function manifests(state = {}, action) {
   switch (action.type) {
     case labeled('CREATE_MANIFEST'):
       return { ...state, [action.id]: action.payload }
@@ -14,3 +15,5 @@ export function manifestReducer(state = {}, action) {
       return state
   }
 }
+
+export const reducer = combineReducers({ manifests })

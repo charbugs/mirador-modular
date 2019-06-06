@@ -1,7 +1,7 @@
-import { defaultState } from '../settings'
-import { labeled } from '../settings'
+import { combineReducers } from 'redux'
+import { labeled, defaultState } from './settings'
 
-export function workspaceReducer(state = defaultState, action) {
+function workspace(state = defaultState, action) {
   switch (action.type) {
     case labeled('TOGGLE_LOADER'):
       return { ...state, loaderVisible: !state.loaderVisible }
@@ -9,3 +9,5 @@ export function workspaceReducer(state = defaultState, action) {
       return state
   }
 }
+
+export { workspace as reducer }

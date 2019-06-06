@@ -1,14 +1,10 @@
 import { useSelector } from 'react-redux'
-import { getWindowsState, getElasticState, getSettingsState } from '../settings'
+import { getModuleState } from './settings'
 
 export function getWindowMode() {
-  return useSelector(state => getSettingsState(state).mode)
-}
-
-export function getWindows() {
-  return useSelector(state => getWindowsState(state))
+  return useSelector(getModuleState).settings.mode
 }
 
 export function getElasticWindows() {
-  return useSelector(state => getElasticState(state))
+  return useSelector(getModuleState).elasticWindows
 }

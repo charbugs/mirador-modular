@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux'
-import { getModuleState } from '../settings'
+import { getModuleState } from './settings'
 
 export function isLoaderVisible() {
-  return useSelector(state => getModuleState(state).loaderVisible)
+  return useSelector(getModuleState).loaderVisible
 }

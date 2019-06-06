@@ -1,4 +1,4 @@
-export const getModuleState = state => state.manifests
+export const getModuleState = state => state.iiif
 
 export const labeled = string => `IIIF_${string}`
 
