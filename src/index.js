@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './m4-impl'
+import App from './m5-impl'
 
 //import { Workspace } from './mirador/workspace/components/Workspace'
 //import { ControlPanel } from './mirador/workspace/components/ControlPanel'
