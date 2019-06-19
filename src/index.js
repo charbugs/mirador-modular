@@ -1,10 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Mirador from './core'
-import ImageExtension from './extensions/images'
+import imageExtension from './extensions/images'
+import ublExtension from './extensions/ubl'
 
 
 ReactDOM.render(
-  <Mirador extensions={[ ImageExtension ]} />,
+  <Mirador extensions={[ ublExtension, imageExtension ]} />,
   document.getElementById('root'),
 );

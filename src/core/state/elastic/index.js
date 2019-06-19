@@ -22,7 +22,15 @@ export default function elasticReducer(state = initialState, action) {
 export function createElasticWindow() {
   return {
     type: 'CREATE_ELASTIC_WINDOW',
-    payload: { id: uuid(), position: { x: 10, y: 10, w: 400, h: 400 } },
+    payload: {
+      id: uuid(),
+      position: {
+        x: Math.floor(Math.random() * 250),
+        y: Math.floor(Math.random() * 150),
+        w: 400,
+        h: 400
+      }
+    },
   }
 }
 

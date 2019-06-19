@@ -22,7 +22,7 @@ export default function layoutReducer(state = initialState, action) {
 export function createWindowLayout() {
   return {
     type: 'CREATE_WINDOW_LAYOUT',
-    payload: { id: uuid(), main: 'MyMainPanel', 'side': 'MySidePanel' },
+    payload: { id: uuid() },
   }
 }
 

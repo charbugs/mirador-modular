@@ -1,3 +1,17 @@
+- taming rerenderings
+- loader extension
+- whats the api and where to inject the api into extensions?
+- how does a package know where to find it's state slice?
+
+
+
+
+
+
+
+
+
+
 
 We propose a major refactoring to make Mirador 3 a content agnostic but extensible IIIF viewer.
 

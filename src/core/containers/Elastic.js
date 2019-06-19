@@ -15,11 +15,14 @@ export default function (props) {
     <ElasticLayout>
       {
         Object.values(windows).map(window => {
-          const { position } = elasticWindows[window.elasticId]
+          const { elasticId } = window
+          const { position } = elasticWindows[elasticId]
+          const dragHandleClassName = `drag-handler-${elasticId}`
+
           return (
             <WindowProvider window={window} key={window.id}>
-              <ElasticWindow position={position}>
-                <Layout />
+              <ElasticWindow position={position} dragHandleClassName={dragHandleClassName}>
+                <Layout dragHandleClassName={dragHandleClassName}/>
               </ElasticWindow>
             </WindowProvider>
           )

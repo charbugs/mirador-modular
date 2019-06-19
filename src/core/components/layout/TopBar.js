@@ -25,10 +25,10 @@ const useStyles = makeStyles({
   },
 })
 
-export function TopBar({ title, onClose }) {
+export function TopBar({ title, onClose, dragHandleClassName }) {
   const classes = useStyles()
   return (
-    <div className={cn(classes.root, 'top-bar')}>
+    <div className={cn(classes.root, dragHandleClassName)}>
       <AppBar position="static">
         <Toolbar className={classes.toolbar}>
           <IconButton className={classes.menuButton} color="inherit">

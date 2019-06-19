@@ -9,9 +9,19 @@ import elastic from './state/elastic'
 import mosaic from './state/mosaic'
 import layouts from './state/layouts'
 
-export const store = createStore(
-  combineReducers({
-    manifests, workspace, windows, elastic, mosaic, layouts,
-  }),
-  composeWithDevTools(applyMiddleware(thunkMiddleware))
-)
+export default function (extensions) {
+  const copyReducers = (acc, ext) => ({ ...acc, ...ext.getReducers() })
+  const extensionReducers = extensions.reduce(copyReducers, {})
+  return createStore(
+    combineReducers({
+      ...extensionReducers,
+      manifests,
+      workspace,
+      windows,
+      elastic,
+      mosaic,
+      layouts,
+    }),
+    composeWithDevTools(applyMiddleware(thunkMiddleware))
+  )
+}

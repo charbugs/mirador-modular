@@ -2,10 +2,10 @@ import React from 'react'
 import { SimpleWindowLayout } from './SimpleWindowLayout'
 import { TopBar } from './TopBar'
 
-export function Layout({ title, side, main, onClose }) {
+export const Layout = React.memo(function Layout({ title, side, main, onClose, dragHandleClassName }) {
   return <SimpleWindowLayout
-    top={<TopBar title={title} onClose={onClose} />}
+    top={<TopBar title={title} onClose={onClose} dragHandleClassName={dragHandleClassName} />}
     side={side}
     main={main}
   />
-}
+})

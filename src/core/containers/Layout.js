@@ -6,19 +6,17 @@ import { getManifestLabels, getManifestById } from '../state/manifests'
 import { Layout } from '../components/layout'
 
 
-export default function (props) {
+export default function ({ dragHandleClassName }) {
   const dispatch = useDispatch()
-  const { manifestId, id } = useWindow()
-  const windowId = id
+  const { manifestId, id: windowId } = useWindow()
   const manifest = useSelector(state => getManifestById(state, manifestId))
   const title = useSelector(getManifestLabels)[manifestId]
-  const extension = useExtension(manifest.json)
+  const extension = useExtension({ manifest: manifest.json, windowId })
 
   if (!extension) {
-    return null
+    return <div>Could not find an extension.</div>
   }
 
-  const components = extension.getComponents()
 
   function handleClose() {
     dispatch(deleteWindow({ windowId }))
@@ -26,8 +24,9 @@ export default function (props) {
 
   return <Layout
     title={title}
-    side={<components.side />}
-    main={<components.main />}
+    side={<extension.side />}
+    main={<extension.main />}
     onClose={handleClose}
+    dragHandleClassName={dragHandleClassName}
   />
 }

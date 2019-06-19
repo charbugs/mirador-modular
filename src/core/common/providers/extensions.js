@@ -10,8 +10,8 @@ export function ExtensionProvider({ extensions, children }) {
   )
 }
 
-export function useExtension(manifest) {
-  const ApplicableExtension = useContext(ExtensionContext)
-    .filter(Extension => Extension.isApplicable(manifest))[0]
-  return ApplicableExtension && ApplicableExtension.create(manifest)
+export function useExtension({ manifest, windowId }) {
+  const extensions = useContext(ExtensionContext)
+  const applicable = extensions.filter(ext => ext.isApplicable(manifest))[0]
+  return applicable && applicable.getComponents({ manifest, windowId})
 }
