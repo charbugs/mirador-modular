@@ -1,5 +1,5 @@
 
 ```
 $ npm install
-$ npm run start  // opens dev server on http://localhost:8080 in watch mode
+$ npm run start  // opens dev server in watch mode at http://localhost:8080 
 ```
